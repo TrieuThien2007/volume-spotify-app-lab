@@ -45,7 +45,30 @@ public class LabExampleVolume {
     gainControl.setValue(20f * (float) Math.log10(volume));
   }
 
-  public static void adjustVolume(Scanner input) {}
+  public static void adjustVolume(Scanner input) {
+      if (audioClip == null) {
+        System.out.println("No audio is currently playing.");
+        return;
+    }
+
+    System.out.print("Enter volume (0 - 100): ");
+    String line = input.nextLine();
+
+    try {
+        int vol = Integer.parseInt(line);
+        if (vol < 0 || vol > 100) {
+            System.out.println("Volume must be between 0 and 100.");
+            return;
+        }
+        float v = vol / 100f;
+        if (v < 0.01f) v = 0.01f;
+        setVolume(v);
+        System.out.println("Volume updated to " + vol + "%");
+
+    } catch (Exception e) {
+        System.out.println("Invalid input. Please enter numbers 0–100.");
+    }
+  }
 
   public static void menu(Song[] library) {
     System.out.println("---- SpotifyLikeApp ----");
