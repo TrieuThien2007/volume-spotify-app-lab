@@ -14,7 +14,7 @@ public class LabExampleVolume {
     "F:\\Song For Spotify App\\Song";
 
   public static void main(final String[] args) {
-    // reading audio library from json file
+
     Song[] library = readAudioLibrary();
 
     Scanner input = new Scanner(System.in);
@@ -126,7 +126,7 @@ public class LabExampleVolume {
   }
 
   public static Song[] readAudioLibrary() {
-    
+
     final String jsonFileName = "audio-library.json";
     final String filePath = directoryPath + "/" + jsonFileName;
 
