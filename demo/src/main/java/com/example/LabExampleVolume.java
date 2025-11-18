@@ -10,8 +10,7 @@ public class LabExampleVolume {
 
   private static Clip audioClip;
 
-  private static String directoryPath =
-    "F:\\Song For Spotify App\\Song";
+  private static String directoryPath = "F:\\Song For Spotify App\\Song";
 
   public static void main(final String[] args) {
 
@@ -30,43 +29,42 @@ public class LabExampleVolume {
 
   public static float getVolume() {
     FloatControl gainControl = (FloatControl) audioClip.getControl(
-      FloatControl.Type.MASTER_GAIN
-    );
+        FloatControl.Type.MASTER_GAIN);
     return (float) Math.pow(10f, gainControl.getValue() / 20f);
   }
 
   public static void setVolume(float volume) {
-    if (volume < 0f || volume > 1f) throw new IllegalArgumentException(
-      "Volume not valid: " + volume
-    );
+    if (volume < 0f || volume > 1f)
+      throw new IllegalArgumentException(
+          "Volume not valid: " + volume);
     FloatControl gainControl = (FloatControl) audioClip.getControl(
-      FloatControl.Type.MASTER_GAIN
-    );
+        FloatControl.Type.MASTER_GAIN);
     gainControl.setValue(20f * (float) Math.log10(volume));
   }
 
   public static void adjustVolume(Scanner input) {
-      if (audioClip == null) {
-        System.out.println("No audio is currently playing.");
-        return;
+    if (audioClip == null) {
+      System.out.println("No audio is currently playing.");
+      return;
     }
 
     System.out.print("Enter volume (0 - 100): ");
     String line = input.nextLine();
 
     try {
-        int vol = Integer.parseInt(line);
-        if (vol < 0 || vol > 100) {
-            System.out.println("Volume must be between 0 and 100.");
-            return;
-        }
-        float v = vol / 100f;
-        if (v < 0.01f) v = 0.01f;
-        setVolume(v);
-        System.out.println("Volume updated to " + vol + "%");
+      int vol = Integer.parseInt(line);
+      if (vol < 0 || vol > 100) {
+        System.out.println("Volume must be between 0 and 100.");
+        return;
+      }
+      float v = vol / 100f;
+      if (v < 0.01f)
+        v = 0.01f;
+      setVolume(v);
+      System.out.println("Volume updated to " + vol + "%");
 
     } catch (Exception e) {
-        System.out.println("Invalid input. Please enter numbers 0–100.");
+      System.out.println("Invalid input. Please enter numbers 0–100.");
     }
   }
 
@@ -123,7 +121,6 @@ public class LabExampleVolume {
 
     return menuChoice;
   }
-
 
   public static void play(Song[] library, Integer i) {
 
