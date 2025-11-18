@@ -70,6 +70,7 @@ public class LabExampleVolume {
 
   public static void menu(Song[] library) {
     System.out.println("---- SpotifyLikeApp ----");
+    System.out.println("Song Library:");
 
     for (Integer i = 0; i < library.length; i++) {
       String name = library[i].name();
@@ -100,7 +101,10 @@ public class LabExampleVolume {
 
     try {
       Integer number = Integer.parseInt(menuChoice);
-
+      if (number == library.length) {
+        play(library, number - 1);
+        return menuChoice;
+      }
       if (number < library.length) {
 
         play(library, number - 1);
